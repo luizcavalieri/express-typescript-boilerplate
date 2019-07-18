@@ -10,6 +10,7 @@ import { User as UserModel } from '../models/User';
 import { PetService } from '../services/PetService';
 import { PetInput } from '../types/input/PetInput';
 import { Pet } from '../types/Pet';
+import { UserService } from '../services/UserService';
 
 @Service()
 @Resolver(of => Pet)
@@ -17,9 +18,17 @@ export class PetResolver {
 
     constructor(
         private petService: PetService,
+        private userService: UserService,
         @Logger(__filename) private log: LoggerInterface,
         @DLoader(UserModel) private userLoader: DataLoader<string, UserModel>
     ) { }
+
+    @Query(returns => [Pet])
+    public async pet(@Arg('userId') userId: string, @Ctx() { requestId }: Context): Promise<PetModel[]> {
+        const user = await this.userService.findOne(userId);
+        this.log.info(`{${requestId}} Find pet by user ${user.firstName} ${user.lastName}`);
+        return this.petService.findByUser(user);
+    }
 
     @Query(returns => [Pet])
     public pets(@Ctx() { requestId }: Context): Promise<PetModel[]> {
