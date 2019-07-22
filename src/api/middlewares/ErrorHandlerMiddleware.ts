@@ -10,7 +10,7 @@ export class ErrorHandlerMiddleware implements ExpressErrorMiddlewareInterface {
     public isProduction = env.isProduction;
 
     constructor(
-        @Logger(__filename) private log: LoggerInterface
+        @Logger(__filename) private log: LoggerInterface,
     ) { }
 
     public error(error: HttpError, req: express.Request, res: express.Response, next: express.NextFunction): void {

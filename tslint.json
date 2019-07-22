@@ -66,7 +66,7 @@
                 "multiline": {
                     "objects": "always",
                     "arrays": "always",
-                    "functions": "never",
+                    "functions": "always",
                     "typeLiterals": "ignore"
                 },
                 "singleline": "never"
@@ -79,7 +79,7 @@
         "class-name": true,
         "curly": true,
         "eofline": true,
-        "jsdoc-format": true,
+        "jsdoc-format": [false, "check-multiline-start"],
         "member-access": false,
         "no-arg": true,
         "no-construct": true,
@@ -88,7 +88,7 @@
         "no-eval": true,
         "no-internal-module": true,
         "no-string-literal": true,
-        "no-trailing-whitespace": true,
+        "no-trailing-whitespace": [true, "ignore-blank-lines"],
         "no-unused-expression": true,
         "no-var-keyword": true,
         "one-line": [

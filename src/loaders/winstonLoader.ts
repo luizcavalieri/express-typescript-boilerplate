@@ -11,11 +11,11 @@ export const winstonLoader: MicroframeworkLoader = (settings: MicroframeworkSett
                 handleExceptions: true,
                 format: env.node !== 'development'
                     ? format.combine(
-                        format.json()
+                        format.json(),
                     )
                     : format.combine(
                         format.colorize(),
-                        format.simple()
+                        format.simple(),
                     ),
             }),
         ],

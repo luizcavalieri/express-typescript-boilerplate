@@ -15,7 +15,7 @@ export class PetService {
     constructor(
         @OrmRepository() private petRepository: PetRepository,
         @EventDispatcher() private eventDispatcher: EventDispatcherInterface,
-        @Logger(__filename) private log: LoggerInterface
+        @Logger(__filename) private log: LoggerInterface,
     ) { }
 
     public find(): Promise<Pet[]> {

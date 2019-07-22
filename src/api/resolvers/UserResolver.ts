@@ -12,8 +12,8 @@ export class UserResolver {
 
     constructor(
         private userService: UserService,
-        private petService: PetService
-        ) {}
+        private petService: PetService,
+    ) {}
 
     @Query(returns => [User])
     public users(): Promise<any> {

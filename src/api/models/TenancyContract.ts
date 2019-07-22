@@ -1,12 +1,12 @@
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 import { Costumer } from './Costumer';
 import { Home } from './Home';
 
 @Entity('TenancyContract', { schema: 'public' })
 export class TenancyContract {
 
-    @Column('integer', { nullable: false, primary: true, name: 'id' })
-    id: number;
+    @PrimaryColumn('uuid')
+    id: string;
 
     @ManyToOne(type => Home, home => home.tenancyContracts, { nullable: false })
     @JoinColumn({ name: 'tenancy_contract_home_id' })
@@ -17,9 +17,8 @@ export class TenancyContract {
     tenancyContractTenant: Costumer | null;
 
     @Column('timestamp without time zone', { nullable: true, name: 'tenancy_contract_enddate' })
-    tenancy_contract_enddate: Date | null;
+    tenancyContractEndDate: Date | null;
 
     @Column('timestamp without time zone', { nullable: true, name: 'tenancy_contract_start_date' })
-    tenancy_contract_start_date: Date | null;
-
+    tenancyContractStartDate: Date | null;
 }

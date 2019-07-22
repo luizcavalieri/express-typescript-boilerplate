@@ -11,7 +11,7 @@ export class AuthService {
 
     constructor(
         @Logger(__filename) private log: LoggerInterface,
-        @OrmRepository() private userRepository: UserRepository
+        @OrmRepository() private userRepository: UserRepository,
     ) { }
 
     public parseBasicAuthFromRequest(req: express.Request): { username: string, password: string } {

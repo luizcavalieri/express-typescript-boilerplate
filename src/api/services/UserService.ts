@@ -14,7 +14,7 @@ export class UserService {
     constructor(
         @OrmRepository() private userRepository: UserRepository,
         @EventDispatcher() private eventDispatcher: EventDispatcherInterface,
-        @Logger(__filename) private log: LoggerInterface
+        @Logger(__filename) private log: LoggerInterface,
     ) { }
 
     public find(): Promise<User[]> {

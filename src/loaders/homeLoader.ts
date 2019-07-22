@@ -14,7 +14,7 @@ export const homeLoader: MicroframeworkLoader = (settings: MicroframeworkSetting
                     version: env.app.version,
                     description: env.app.description,
                 });
-            }
+            },
         );
 
     }

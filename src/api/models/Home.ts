@@ -1,11 +1,11 @@
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 import { TenancyContract } from './TenancyContract';
 
 @Entity('home', { schema: 'public' })
 export class Home {
 
-    @Column('integer', { nullable: false, primary: true, name: 'id' })
-    public id: number;
+    @PrimaryColumn('uuid')
+    public id: string;
 
     @Column('double precision', { nullable: true, precision: 53, name: 'home_rent' })
     public home_rent: number | null;

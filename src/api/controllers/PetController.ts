@@ -11,7 +11,7 @@ import { PetService } from '../services/PetService';
 export class PetController {
 
     constructor(
-        private petService: PetService
+        private petService: PetService,
     ) { }
 
     @Get()

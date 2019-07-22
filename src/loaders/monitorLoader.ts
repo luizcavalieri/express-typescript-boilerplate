@@ -17,7 +17,7 @@ export const monitorLoader: MicroframeworkLoader = (settings: MicroframeworkSett
                 },
                 challenge: true,
             }) : (req, res, next) => next(),
-            monitor().pageRoute
+            monitor().pageRoute,
         );
 
     }

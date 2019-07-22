@@ -20,7 +20,7 @@ export class PetResolver {
         private petService: PetService,
         private userService: UserService,
         @Logger(__filename) private log: LoggerInterface,
-        @DLoader(UserModel) private userLoader: DataLoader<string, UserModel>
+        @DLoader(UserModel) private userLoader: DataLoader<string, UserModel>,
     ) { }
 
     @Query(returns => [Pet])

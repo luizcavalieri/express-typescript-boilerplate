@@ -32,7 +32,7 @@ export const swaggerLoader: MicroframeworkLoader = (settings: MicroframeworkSett
                 challenge: true,
             }) : (req, res, next) => next(),
             swaggerUi.serve,
-            swaggerUi.setup(swaggerFile)
+            swaggerUi.setup(swaggerFile),
         );
 
     }

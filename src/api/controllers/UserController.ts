@@ -11,7 +11,7 @@ import { UserService } from '../services/UserService';
 export class UserController {
 
     constructor(
-        private userService: UserService
+        private userService: UserService,
     ) { }
 
     @Get()
