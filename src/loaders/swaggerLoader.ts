@@ -5,7 +5,9 @@ import * as swaggerUi from 'swagger-ui-express';
 
 import { env } from '../env';
 
-export const swaggerLoader: MicroframeworkLoader = (settings: MicroframeworkSettings | undefined) => {
+export const swaggerLoader: MicroframeworkLoader = (
+    settings: MicroframeworkSettings | undefined,
+) => {
     if (settings && env.swagger.enabled) {
         const expressApp = settings.getData('express_app');
         const swaggerFile = require(path.join(__dirname, '..', env.swagger.file));

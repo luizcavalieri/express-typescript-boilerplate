@@ -24,7 +24,9 @@ export class PetResolver {
     ) { }
 
     @Query(returns => [Pet])
-    public async pet(@Arg('userId') userId: string, @Ctx() { requestId }: Context): Promise<PetModel[]> {
+    public async pet(
+        @Arg('userId') userId: string, @Ctx() { requestId }: Context,
+    ): Promise<PetModel[]> {
         const user = await this.userService.findOne(userId);
         this.log.info(`{${requestId}} Find pet by user ${user.firstName} ${user.lastName}`);
         return this.petService.findByUser(user);

@@ -8,21 +8,20 @@ export class Task {
     @PrimaryColumn('uuid')
     public id: string;
 
-    @Column('timestamp without time zone', { nullable: true, name: 'task_due_date' })
-    taskDueDate: Date | null;
-
     @Column('character varying', { nullable: true, length: 400, name: 'task_description' })
     taskDescription: string | null;
 
-    @ManyToOne(type => TaskStatus, task_status => task_status.tasks, {})
+    @Column('timestamp without time zone', { nullable: true, name: 'task_start_date' })
+    taskStartDate: Date | null | string;
+
+    @Column('timestamp without time zone', { nullable: true, name: 'task_due_date' })
+    taskDueDate: Date | null | string;
+
+    @ManyToOne(type => TaskStatus, taskStatus => taskStatus.tasks, {})
     @JoinColumn({ name: 'task_status_id' })
     taskStatus: TaskStatus | null;
-
-    @Column('timestamp without time zone', { nullable: true, name: 'task_start_date' })
-    taskStartDate: Date | null;
 
     @ManyToOne(type => TaskCategory, task_category => task_category.tasks, {})
     @JoinColumn({ name: 'task_category_id' })
     taskCategory: TaskCategory | null;
-
 }

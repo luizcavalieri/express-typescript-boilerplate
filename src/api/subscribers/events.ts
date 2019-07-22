@@ -10,4 +10,7 @@ export const events = {
     pet: {
         created: 'onPetCreate',
     },
+    task: {
+        created: 'onTaskCreate',
+    },
 };

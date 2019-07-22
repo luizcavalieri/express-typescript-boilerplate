@@ -1,8 +1,12 @@
 import { Service } from 'typedi';
 import { OrmRepository } from 'typeorm-typedi-extensions';
+import { EventDispatcher, EventDispatcherInterface } from '../../decorators/EventDispatcher';
+import uuid = require('uuid');
 
 // import { EventDispatcher, EventDispatcherInterface } from '../../decorators/EventDispatcher';
 import { Logger, LoggerInterface } from '../../decorators/Logger';
+import { events } from '../subscribers/events';
+
 import { Task } from '../models/Task';
 import { TaskRepository } from '../repositories/TaskRepository';
 
@@ -11,7 +15,7 @@ export class TaskService {
 
     constructor(
         @OrmRepository() private taskRepository: TaskRepository,
-        // @EventDispatcher() private eventDispatcher: EventDispatcherInterface,
+        @EventDispatcher() private eventDispatcher: EventDispatcherInterface,
         @Logger(__filename) private log: LoggerInterface,
     ) {
     }
@@ -26,13 +30,13 @@ export class TaskService {
         return this.taskRepository.findTaskByDescription(taskDescription);
     }
 
-    // public async create(user: User): Promise<User> {
-    //     this.log.info('Create a new user => ', user.toString());
-    //     user.id = uuid.v1();
-    //     const newUser = await this.userRepository.save(user);
-    //     this.eventDispatcher.dispatch(events.user.created, newUser);
-    //     return newUser;
-    // }
+    public async create(task: Task): Promise<Task> {
+        this.log.info('Create a new task => ', task.toString());
+        task.id = uuid.v1();
+        const newTask = await this.taskRepository.save(task);
+        this.eventDispatcher.dispatch(events.task.created, newTask);
+        return newTask;
+    }
     //
     // public update(id: string, user: User): Promise<User> {
     //     this.log.info('Update a user');

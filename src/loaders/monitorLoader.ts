@@ -4,7 +4,9 @@ import { MicroframeworkLoader, MicroframeworkSettings } from 'microframework-w3t
 
 import { env } from '../env';
 
-export const monitorLoader: MicroframeworkLoader = (settings: MicroframeworkSettings | undefined) => {
+export const monitorLoader: MicroframeworkLoader = (
+    settings: MicroframeworkSettings | undefined,
+) => {
     if (settings && env.monitor.enabled) {
         const expressApp = settings.getData('express_app');
 

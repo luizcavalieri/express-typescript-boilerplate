@@ -21,7 +21,9 @@ export interface CreateDataLoaderOptions {
 /**
  * Creates a new dataloader with the typorm repository
  */
-export function createDataLoader<T>(obj: ObjectType<T>, options: CreateDataLoaderOptions = {}): DataLoader<any, any> {
+export function createDataLoader<T>(
+    obj: ObjectType<T>, options: CreateDataLoaderOptions = {},
+): DataLoader<any, any> {
     let repository;
     try {
         repository = getCustomRepository<Repository<any>>(obj);
@@ -29,7 +31,10 @@ export function createDataLoader<T>(obj: ObjectType<T>, options: CreateDataLoade
         try {
             repository = getRepository(obj);
         } catch (errorModel) {
-            throw new Error('Could not create a dataloader, because obj is nether model or repository!');
+            throw new Error(
+                `Could not create a dataloader, because obj is nether model or
+                repository!`,
+            );
         }
     }
 
@@ -42,6 +47,8 @@ export function createDataLoader<T>(obj: ObjectType<T>, options: CreateDataLoade
         }
 
         const handleBatch = (arr: any[]) => options.multiple === true ? arr : arr[0];
-        return ids.map(id => handleBatch(items.filter(item => item[options.key || 'id'] === id)));
+        return ids.map(id => handleBatch(
+            items.filter(item => item[options.key || 'id'] === id)),
+        );
     });
 }

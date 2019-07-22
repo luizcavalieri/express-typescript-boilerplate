@@ -3,7 +3,9 @@ import { createConnection, getConnectionOptions } from 'typeorm';
 
 import { env } from '../env';
 
-export const typeormLoader: MicroframeworkLoader = async (settings: MicroframeworkSettings | undefined) => {
+export const typeormLoader: MicroframeworkLoader = async (
+    settings: MicroframeworkSettings | undefined,
+) => {
 
     const loadedConnectionOptions = await getConnectionOptions();
 

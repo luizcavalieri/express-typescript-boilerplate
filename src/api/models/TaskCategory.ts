@@ -8,7 +8,7 @@ export class TaskCategory {
     id: string;
 
     @Column('character varying', { nullable: true, length: 20, name: 'task_category_description' })
-    task_category_description: string | null;
+    taskCategoryDescription: string | null;
 
     @OneToMany(type => Task, task => task.taskCategory)
     tasks: Task[];

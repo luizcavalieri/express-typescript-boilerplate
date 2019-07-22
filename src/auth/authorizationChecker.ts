@@ -5,11 +5,15 @@ import { Connection } from 'typeorm';
 import { Logger } from '../lib/logger';
 import { AuthService } from './AuthService';
 
-export function authorizationChecker(connection: Connection): (action: Action, roles: any[]) => Promise<boolean> | boolean {
+export function authorizationChecker(
+    connection: Connection,
+): (action: Action, roles: any[]) => Promise<boolean> | boolean {
     const log = new Logger(__filename);
     const authService = Container.get<AuthService>(AuthService);
 
-    return async function innerAuthorizationChecker(action: Action, roles: string[]): Promise<boolean> {
+    return async function innerAuthorizationChecker(
+        action: Action, roles: string[],
+    ): Promise<boolean> {
         // here you can use request/response objects from action
         // also if decorator defines roles it needs to access the action
         // you can use them to provide granular access check
@@ -22,7 +26,9 @@ export function authorizationChecker(connection: Connection): (action: Action, r
             return false;
         }
 
-        action.request.user = await authService.validateUser(credentials.username, credentials.password);
+        action.request.user = await authService
+            .validateUser(credentials.username, credentials.password);
+
         if (action.request.user === undefined) {
             log.warn('Invalid credentials given');
             return false;

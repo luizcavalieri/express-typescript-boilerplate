@@ -11,9 +11,12 @@ export class ErrorHandlerMiddleware implements ExpressErrorMiddlewareInterface {
 
     constructor(
         @Logger(__filename) private log: LoggerInterface,
-    ) { }
+    ) {
+    }
 
-    public error(error: HttpError, req: express.Request, res: express.Response, next: express.NextFunction): void {
+    public error(
+        error: HttpError, req: express.Request, res: express.Response, next: express.NextFunction,
+    ): void {
         res.status(error.httpCode || 500);
         res.json({
             name: error.name,
